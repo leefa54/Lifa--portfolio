@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lifa K - Digital Clock</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #222;
+            font-family: Arial, sans-serif;
+        }
+
+        .clock-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #clock {
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="clock-box">
+        <h1>Lifa K's Digital Clock</h1>
+        <div id="clock">00:00:00</div>
+        <p>Live updating time</p>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+            let seconds = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById("clock").textContent =
+                hours + ":" + minutes + ":" + seconds;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
+
