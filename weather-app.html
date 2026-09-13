@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lifa K - Weather App</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e8f4f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .weather-card {
+            background-color: white;
+            padding: 35px;
+            width: 320px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #weather {
+            margin-top: 25px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="weather-card">
+        <h1>🌤️ Weather App</h1>
+
+        <input type="text" id="city" placeholder="Enter city name">
+
+        <button onclick="getWeather()">Get Weather</button>
+
+        <div id="weather">
+            <p>Enter a city to check the weather.</p>
+        </div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("city").value;
+            const weather = document.getElementById("weather");
+
+            if (city === "") {
+                weather.innerHTML = "<p class='error'>Please enter a city name.</p>";
+                return;
+            }
+
+            const apiKey = "4061f28525c70488511059a492e4f6e6";
+
+            const url =
+                "https://api.openweathermap.org/data/2.5/weather?q="
+                + encodeURIComponent(city)
+                + "&appid=" + apiKey
+                + "&units=metric";
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("City not found");
+                }
+
+                const data = await response.json();
+
+                weather.innerHTML =
+                    "<h2>" + data.name + "</h2>" +
+                    "<p>🌡️ Temperature: " + data.main.temp + " °C</p>" +
+                    "<p>💧 Humidity: " + data.main.humidity + "%</p>" +
+                    "<p>☁️ Condition: " + data.weather[0].description + "</p>";
+
+            } catch (error) {
+                weather.innerHTML =
+                    "<p class='error'>City not found. Please try again.</p>";
+            }
+        }
+    </script>
+
+</body>
+</html>
