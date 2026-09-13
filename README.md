@@ -11,4 +11,8 @@ https://leefa54.github.io/Lifa--portfolio/digital-clock.html
 [View Weather App]
 https://leefa54.github.io/Lifa--portfolio/weather-app.html
 
+### 🎓 Student Management Dashboard
+[View Student Management Dashboard]
+https://leefa54.github.io/Lifa--portfolio/student-dashboard.html
+
 
